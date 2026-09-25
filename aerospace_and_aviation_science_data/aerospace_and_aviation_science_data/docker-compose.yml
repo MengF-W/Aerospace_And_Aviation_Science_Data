@@ -1,0 +1,8 @@
+
+services:
+  application:
+    container_name: aerospace_and_aviation_science_data
+    image: aero:0.0.1
+    restart: always
+    ports:
+      - "8000:8000"

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The NASA Astronomy Picture of the Day List</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+<h2>The NASA Astronomy Picture of the Day List</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Title</th>
+        <th>Picture</th>
+        <th>Explanation</th>
+        <th>Credit</th>
+        <th>Copyright</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for result in result_list %}
+        <tr>
+            <td width="80">{{result.date}}</td>
+            <td>{{result.title}}</td>
+			{% if result.media_type == 'image' %}
+            <td>{{result.media_location|safe}}</td>
+			{% elif result.media_type == 'video' %}
+			<td><video  width="200" height="300" controls title="">{{result.media_location|safe}}</video></td>
+			{% endif %}
+            <td>{{result.explanation|safe}}</td>
+            <td>{{result.credit|safe}}</td>
+            <td>{{result.copyright|safe}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
